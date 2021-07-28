@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Repositories\CategoriesRepository\CategoriesRepository;
+use App\Http\Requests\CreateCategoriesRequest;
 
 class CategoriesController 
 {
@@ -25,8 +26,15 @@ class CategoriesController
         ]);
     }
 
-    public function Create(Request $request) 
+    public function create(CreateCategoriesRequest $request) 
     {
+        $params = $request->all();
+        $item = $this->_categoriesRepository->create($params);
+        $status = ($item) ? true : false;
         
+        return response()->json([
+            'status' => $status,
+            'item' => $item
+        ]);
     }
 }

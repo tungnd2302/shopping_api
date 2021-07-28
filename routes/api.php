@@ -20,4 +20,5 @@ Route::group(['middleware' => 'api','prefix' => 'auth','namespace' => 'App\Http\
 
 Route::group(['middleware' => 'api','prefix' => 'admin','namespace' => 'App\Http\Controllers\Admin'], function ($router) {
     Route::post('/categories/index', 'CategoriesController@index');
+    Route::post('/categories/create', 'CategoriesController@create');
 });
